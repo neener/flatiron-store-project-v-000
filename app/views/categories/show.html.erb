@@ -4,10 +4,8 @@
 <% @category.items.each do |item| %>
     <li><%= link_to item.title, item_path(item) %> | <%= "$#{item.price.to_f/100}" %></li>
     
-    <% if current_user %>
-	    <%= form_tag "/line_items/#{item.id}" do %>
-	    	<%= submit_tag "Add to Cart" %>
-	    <% end %>
-    <% end %>
+    <% if user_signed_in? %>
+  		<%= button_to 'Add to Cart', line_items_path(item_id: item) %>
+  	<% end %>
 <% end %>
 </ul>
