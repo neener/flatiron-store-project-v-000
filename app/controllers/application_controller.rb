@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 	 	cart = Cart.create
 	 	cart.user = current_user
 	 	cart.save
+	 	session[:cart_id] = cart.id
 	 	cart
  	end
   end
