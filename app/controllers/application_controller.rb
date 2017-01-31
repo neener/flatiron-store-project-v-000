@@ -9,17 +9,8 @@ class ApplicationController < ActionController::Base
 
   def current_cart
   	# binding.pry
-  	if session[:cart_id]
- 		Cart.find(session[:cart_id])
- 	else
-	 	cart = Cart.create
-	 	cart.user = current_user
-	 	cart.save
-	 	session[:cart_id] = cart.id
-	 	cart
- 	end
+    current_user.current_cart
   end
 
 end
-
-
+  
