@@ -10,9 +10,12 @@ class Cart < ActiveRecord::Base
 	def add_item(item_id)
 		item = Item.find(item_id)
 		line_item = line_items.detect {|li| li.item == item}
-		line_item ||= LineItem.new
-		line_item.cart = self
-		line_item.item = item
+		if line_item 
+			line_item.quantity += 1
+		else
+			line_item = line_items.build
+			line_item.item = item
+		end
 		line_item
 	end
 	
